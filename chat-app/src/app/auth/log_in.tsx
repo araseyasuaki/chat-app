@@ -1,5 +1,3 @@
-
-import React from 'react-native'
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native'
 import Button from '../../components/Button'
 import { Link, router } from 'expo-router'
@@ -27,9 +25,8 @@ const LogIn = (): JSX.Element => {
     
     return(
         <View style={styles.container}>
-            <Header />
             <View style={styles.inner}>
-                <Text style={styles.title}>LogIn</Text>
+                <Text style={styles.title}>Log In</Text>
                     <TextInput 
                     style={styles.input} 
                     value ={email}
@@ -51,7 +48,7 @@ const LogIn = (): JSX.Element => {
           <Button label='Submit' onPress={() => {handlePress(email, password)}}/>
             <View style={styles.footer}>
                 <Text style={styles.footerText} >Not registered?</Text>
-                <Link href='/auth/sign_up' asChild>
+                <Link href='/auth/sign_up' asChild replace>
                     <TouchableOpacity>
                     <Text style={styles.footerLink} >Sign up here!</Text>
                     </TouchableOpacity>

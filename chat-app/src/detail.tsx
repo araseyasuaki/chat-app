@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { router } from 'expo-router'
+import Header from '../../components/Header'
 import CircleButton from '../../components/CircleButton'
 
 /*
@@ -11,6 +12,7 @@ const handlePress = (): void => {
 const Detail = (): JSX.Element => {
     return(
         <View style={styles.container}>
+            <Header />
             <View>
                 <Text>Hi!</Text>
                 <Text>Nice day!</Text>
