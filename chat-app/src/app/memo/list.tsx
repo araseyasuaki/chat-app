@@ -4,6 +4,7 @@ import CircleButton from '../../components/CircleButton'
 import { router, useNavigation } from 'expo-router'
 import { useEffect } from 'react'
 import LogOutButton from '@/src/components/LogOutButton'
+import {Feather } from '@expo/vector-icons'
 
 const list = (): JSX.Element => {
     const navigation = useNavigation()
@@ -19,7 +20,9 @@ const list = (): JSX.Element => {
                 <MemoListItem/>
                 <MemoListItem/>
             </View>
-            <CircleButton>+</CircleButton>
+            <CircleButton>
+                <Feather name = 'plus' size={40}/>
+            </CircleButton>
         </View>
     )
 }
