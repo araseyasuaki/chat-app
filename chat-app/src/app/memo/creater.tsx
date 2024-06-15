@@ -1,16 +1,39 @@
-import { Redirect, router } from "expo-router";
+import { Redirect, router, Link } from "expo-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from 'react'
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import Button from '../../components/Button'
 
-const User = (): JSX.Element => {
+const Creater = (): JSX.Element => {
   return (
-    <View>
-        <Text>
-            Creater page
+    <View style = {styles.container}>
+        <Text style = {styles.createrTitle}>
+            グループ設定
         </Text>
+        <Link href='/memo/groupchat' asChild>
+        <TouchableOpacity>
+          <Text style = {styles.action}>Action</Text>
+        </TouchableOpacity>
+        </Link>
     </View>
   )
 }
 
-export default User
+
+
+
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      backgroundColor: '#ffffff'
+  },
+  createrTitle: {
+    fontSize: 40
+  },
+  action: {}
+})
+
+
+
+export default Creater

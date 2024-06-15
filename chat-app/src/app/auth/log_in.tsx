@@ -27,33 +27,33 @@ const LogIn = (): JSX.Element => {
         <View style={styles.container}>
             <View style={styles.inner}>
                 <Text style={styles.title}>Log In</Text>
-                    <TextInput 
-                    style={styles.input} 
-                    value ={email}
-                    onChangeText={(text) => { setEmail(text) }}
-                    autoCapitalize='none'
-                    keyboardType='email-address'
-                    placeholder='Email Address'
-                    textContentType='emailAddress'
-                    />
-                    <TextInput 
-                    style={styles.input} 
-                    value ={password}
-                    onChangeText={(text) => { setPassword(text) }}
-                    autoCapitalize='none'
-                    secureTextEntry
-                    placeholder='password'
-                    textContentType='password'
-                    />
-          <Button label='Submit' onPress={() => {handlePress(email, password)}}/>
-            <View style={styles.footer}>
-                <Text style={styles.footerText} >Not registered?</Text>
-                <Link href='/auth/sign_up' asChild replace>
-                    <TouchableOpacity>
-                    <Text style={styles.footerLink} >Sign up here!</Text>
-                    </TouchableOpacity>
-                </Link>
-            </View>
+                <TextInput 
+                style={styles.input} 
+                value ={email}
+                onChangeText={(text) => { setEmail(text) }}
+                autoCapitalize='none'
+                keyboardType='email-address'
+                placeholder='Email Address'
+                textContentType='emailAddress'
+                />
+                <TextInput 
+                style={styles.input} 
+                value ={password}
+                onChangeText={(text) => { setPassword(text) }}
+                autoCapitalize='none'
+                secureTextEntry
+                placeholder='password'
+                textContentType='password'
+                />
+                <Button label='Submit' onPress={() => {handlePress(email, password)}}/>
+                <View style={styles.footer}>
+                    <Text style={styles.footerText} >Not registered?</Text>
+                    <Link href='/auth/sign_up' asChild replace>
+                        <TouchableOpacity>
+                        <Text style={styles.footerLink} >Sign up here!</Text>
+                        </TouchableOpacity>
+                    </Link>
+                </View>
         </View>
         </View>
     )
