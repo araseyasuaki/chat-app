@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
     },
     inputContainer:{
         paddingVertical: 32,
-        paddingHorizontal: 27
+        paddingHorizontal: 27,
+        
     },
     input:{
 
