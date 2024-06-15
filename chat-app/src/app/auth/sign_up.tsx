@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Link, router } from 'expo-router'
 import { auth } from '../../config'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import Header from '../../components/Header'
 
 const handlePress = (email: string, password: string): void => {
     console.log(email, password)
@@ -17,17 +18,15 @@ const handlePress = (email: string, password: string): void => {
         const { code, message } = error
         console.log(code, message)
         Alert.alert(message)
-
     })
-    
 }
-
 
 const SignUp = (): JSX.Element => {
     const [ email, setEmail ] = useState('')
     const [password, setPassword] = useState('')
     return(
         <View style={styles.container}>
+            <Header />
             <View style={styles.inner}>
                 <Text style={styles.title}>Sign Up</Text>
                 <TextInput 
