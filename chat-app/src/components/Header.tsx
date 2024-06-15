@@ -12,8 +12,6 @@ const Header = (): JSX.Element => {
     )
 }
 
-export default Header
-
 const styles = StyleSheet.create({
     header: {
         backgroundColor: '#467FD3',
@@ -37,3 +35,5 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     }
 })
+
+export default Header

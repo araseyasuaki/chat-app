@@ -1,5 +1,6 @@
-import { Stack } from 'expo-router'
+import { View, Text } from 'react-native'
 import { ImageBackgroundComponent } from 'react-native'
+import { Stack } from 'expo-router'
 
 const Layout = (): JSX.Element => {
     return <Stack screenOptions ={{

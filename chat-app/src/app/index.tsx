@@ -7,11 +7,10 @@ const Index = (): JSX.Element => {
   useEffect(() =>{
     onAuthStateChanged(auth, (user) => {
       if (user !== null){
-        router.replace('/memo/profile_set')
+        router.replace('/auth/log_in')
       }
     })
   })
-
 
   return <Redirect href='auth/log_in' />
 }

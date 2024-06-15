@@ -4,7 +4,7 @@ import CircleButton from '../../components/CircleButton'
 import { Link, router, useNavigation } from 'expo-router'
 import { useEffect } from 'react'
 import LogOutButton from '../../components/LogOutButton'
-import {Feather } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 
 const profileset2 = (): JSX.Element => {
     const navigation = useNavigation()
@@ -19,14 +19,14 @@ const profileset2 = (): JSX.Element => {
                 <Text style={styles.profileSetHead}>個人プロファイル設定2</Text>
             </View>
             <View style={styles.CategoryContainer}>
-                <Link href='/memo/user' asChild>
+                <Link href='/users/user' asChild>
                     <TouchableOpacity>
-                        <Text> ユーザー </Text>
+                        <Text> [ユーザー] </Text>
                     </TouchableOpacity>
                 </Link>
                 <Link href='/memo/creater' asChild>
                     <TouchableOpacity>
-                        <Text> クリエーター </Text>
+                        <Text> [クリエーター] </Text>
                     </TouchableOpacity>
                 </Link>
             </View>
@@ -38,7 +38,8 @@ const profileset2 = (): JSX.Element => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        alignItems: 'center'
     },
     profileSetContainer: {
         paddingVertical: 32,
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
         lineHeight: 24
     },
     CategoryContainer: {
+        flexDirection: 'row',
         flex:1,
         fontSize: 15,
         paddingVertical: 2,
