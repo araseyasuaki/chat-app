@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth'
 import { router } from 'expo-router'
 import { auth } from '../config'
 
-const HandlePress = (): void => {
+const handlePress = (): void => {
     signOut(auth)
     .then(() => {
         router.replace('/auth/log_in')
@@ -15,7 +15,7 @@ const HandlePress = (): void => {
 
 const LogOutButton = (): JSX.Element => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlePress}>
             <Text style = {styles.text}>Log out</Text>
         </TouchableOpacity>
     )
