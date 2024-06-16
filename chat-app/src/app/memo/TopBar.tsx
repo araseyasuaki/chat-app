@@ -12,7 +12,7 @@ const handlePress = (): void => {
 const TopBar = (): JSX.Element => {
     return(
         <View style={styles.container}>
-                <FontAwesome5 name='fire' size = {40}/>
+            <FontAwesome5 name='fire' size = {40}/>
         </View>
     )
 }
