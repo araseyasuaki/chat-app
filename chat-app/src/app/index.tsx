@@ -7,12 +7,15 @@ const Index = (): JSX.Element => {
   useEffect(() =>{
     onAuthStateChanged(auth, (user) => {
       if (user !== null){
-        router.replace('/auth/log_in')
+        //router.replace('/auth/log_in')
+        router.replace('/users/user')
       }
     })
   })
 
-  return <Redirect href='auth/log_in' />
+  return 
+  <Redirect href='/users/user' />
+  //<Redirect href='auth/log_in' />
 }
 
 export default Index

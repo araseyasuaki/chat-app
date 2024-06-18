@@ -23,20 +23,11 @@ export default function TabLayout() {
         )
       }}
       />
-        <Tabs.Screen 
+      <Tabs.Screen 
           name="match" 
           options={{
             tabBarIcon: ({color}) => (
-              <View style={{
-                backgroundColor: Colors.primaryColor,
-                paddingHorizontal: 16,
-                paddingVertical: 12,
-                borderRadius: 10,
-                height: 50
-               }}
-               >
-                <Feather name="heart" size = {24} color={Colors.white} />
-              </View>
+              <Feather name="heart" size = {24} color={color} />
             )
       }}
       />

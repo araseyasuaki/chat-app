@@ -7,10 +7,11 @@ const Match = (): JSX.Element => {
   return (
     <View>
         <Text>
-          Match page
+          Match
         </Text>
     </View>
   )
 }
+
 
 export default Match
