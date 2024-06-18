@@ -3,7 +3,7 @@ import { ImageBackgroundComponent } from 'react-native'
 import { Stack } from 'expo-router'
 
 const Layout = (): JSX.Element => {
-    return <Stack screenOptions ={{
+    return  <Stack screenOptions ={{
         headerStyle: {
             backgroundColor: '#467FD3'
         },

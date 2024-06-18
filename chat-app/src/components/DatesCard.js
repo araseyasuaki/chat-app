@@ -22,14 +22,18 @@ var { width, height } = Dimensions.get("window");
 
 export default function DatesCard({ item, handleClick }) {
   return (
-
     <View style={styles.cardContainer}>
       <TouchableWithoutFeedback onPress={() => handleClick(item)}>
+      <View>
+
         <Image
           source={item.imgUrl}
           style={styles.image}
           resizeMode="cover"
+
         />
+        
+      </View>
       </TouchableWithoutFeedback>
       <LinearGradient
         colors={["transparent", "rgba(0,0,0,0.9)"]}
@@ -55,6 +59,7 @@ export default function DatesCard({ item, handleClick }) {
       </View>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

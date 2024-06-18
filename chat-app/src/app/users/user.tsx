@@ -23,9 +23,6 @@ const User = (): JSX.Element => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Hi!</Text>
-      </View>
       <View >
         <Carousel
           data={date}

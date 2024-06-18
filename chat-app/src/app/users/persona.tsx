@@ -7,7 +7,7 @@ const Persona = (): JSX.Element => {
   return (
     <View>
         <Text>
-          Persona page
+          my profile
         </Text>
     </View>
   )
