@@ -9,8 +9,85 @@ import {
     user7,
     user8,
     user9,
+    group1,
+    group2
   } from "../../assets/images";
+
+  export const date = [
+    {
+      id: 1,
+      imgUrl: group1,
+      name: "Chess lover",
+      lastName: "Lee",
+      organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 2,
+      imgUrl: group2,
+      name: "gymming",
+      organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 3,
+      imgUrl: user3,
+      name: "Chiara",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 4,
+      imgUrl: user4,
+      name: "Ella",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 5,
+      imgUrl: user5,
+      name: "Jullie",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 6,
+      imgUrl: user6,
+      name: "Olivia",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 7,
+      imgUrl: user7,
+      name: "William",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 8,
+      imgUrl: user8,
+      name: "Sophia",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 9,
+      imgUrl: user9,
+      name: "Diana",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+    {
+      id: 10,
+      imgUrl: user1,
+      name: "Alex",
+            organization: "日本専門学校",
+      major: "Webデザイン科"
+    },
+  ];
   
+
   export const userData = [
     {
       id: 1,

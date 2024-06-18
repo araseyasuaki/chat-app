@@ -7,6 +7,8 @@ import user6 from "./user6.jpg";
 import user7 from "./user7.jpg";
 import user8 from "./user8.jpg";
 import user9 from "./user9.jpg";
+import group1 from "./group1.jpg";
+import group2 from "./group2.jpg";
 import profile from "./profile.jpg";
 
 export {
@@ -19,5 +21,7 @@ export {
   user7,
   user8,
   user9,
+  group1,
+  group2,
   profile,
 };
