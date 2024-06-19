@@ -32,8 +32,10 @@ const GroupSet = (): JSX.Element => {
          style={styles.input}
          value={bodyText} 
          onChangeText={(text) => { setBodyText(text) }}
+         placeholder='Group Name'
          autoFocus
          />
+
       </View>
       <CircleButton onPress = {() => handlePress(bodyText)}>
           <Feather name='check' size={40} color='#ffffff' />
@@ -44,7 +46,8 @@ const GroupSet = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1
+    flex: 1,
+    backgroundColor: '#F0F4F8'
   },
   inputContainer: {
     paddingVertical: 32,
@@ -52,10 +55,13 @@ const styles = StyleSheet.create({
     flex: 1
   },
   input: {
-    flex:1,
-    textAlignVertical: 'top',
+    borderWidth:1,
+    borderColor: '#DDDDDD',
+    backgroundColor: '#ffffff',
+    height: 48,
+    padding: 8,
     fontSize: 16,
-    lineHeight: 24
+    marginBottom: 16,
   },
   actionContainer: {
     position: 'absolute',

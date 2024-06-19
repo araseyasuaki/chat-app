@@ -1,7 +1,9 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { Link } from 'expo-router'
 import { type Memo } from '../types/memos'
 import { FontAwesome, Feather } from '@expo/vector-icons'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+
 
 interface Props {
     memo: Memo
@@ -10,17 +12,25 @@ interface Props {
 const GroupListItem = (props: Props): JSX.Element => {
     const { memo } = props
     const { bodyText } = memo
+    //const userphoto = require('../../assets/images/group1.jpg')
     if(bodyText === null) {return null}
     return(
-        <Link href='/memo/detail' asChild>
-            <TouchableOpacity style={styles.groupListItem}>
+        <Link href='/chat/groupchat' asChild>
+            <TouchableOpacity style={styles.groupContainer}>
                 <View>
-                    <Text numberofLines={1} style={styles.groupListItemTitle}>{bodyText}</Text>
-                    <Text style={styles.groupListItemDate}>2023/10/1</Text>
+                    <Image 
+                    style={styles.image}
+                    source={require('../../assets/images/group1.jpg')} />
                 </View>
-                <TouchableOpacity>
-                    <Feather name='x' />
-                </TouchableOpacity>
+                <View style={styles.groupListContainer}>
+                    <View>
+                        <Text numberofLines={1} style={styles.groupTitle}>{bodyText}</Text>
+                        <Text style={styles.lastMessage}>
+                            Last Message
+                        </Text>
+                    </View>
+                    <Text style={styles.groupDate}>2023/10/1</Text>
+                </View>
             </TouchableOpacity>
         </Link>
     )
@@ -28,24 +38,45 @@ const GroupListItem = (props: Props): JSX.Element => {
 
 
 const styles = StyleSheet.create({
-    groupListItem: {
+    groupContainer: {
+        flex:1,
         backgroundColor: '#ffffff',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        //justifyContent: 'space-between',
         paddingVertical: 16,
-        paddingHorizontal: 19,
+        paddingHorizontal: 10,
         alignItems: 'center',
         borderBottomWidth: 1,
         borderColor: 'rgba(0,0,0,0.15)'
     },
-    groupListItemTitle: {
-        fontSize: 16,
-        lineHeight: 32
+    image:{
+        backgroundColor: '#ffffff',
+        height: hp(6),
+        aspectRatio: 1,
+        borderRadius: 50,
     },
-    groupListItemDate: {
-        fontSize: 12,
+    groupListContainer: {
+        marginLeft: 10,
+        flex:1,
+        gap: 10,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    groupTitle: {
+        fontSize: hp(1.8),
+        fontWeight: 'bold',
+        lineHeight: 32,
+    },
+    groupDate: {
+        fontSize: hp(1.6),
         lineHeight: 16,
         color: '#848484'
+    },
+    lastMessage:{
+        //flex:1,
+        fontSize: hp(1.6),
+        color: 'grey'
     }
 })
 

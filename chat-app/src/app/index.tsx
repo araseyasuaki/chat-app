@@ -8,8 +8,8 @@ const Index = (): JSX.Element => {
   useEffect(() =>{
     onAuthStateChanged(auth, (user) => {
       if (user !== null){
-        //router.replace('/auth/log_in')
-        router.replace('setting/selection')
+        router.replace('/auth/log_in')
+        //router.replace('creaters/group_list')
       }
     })
   })
