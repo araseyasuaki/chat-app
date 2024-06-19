@@ -11,7 +11,7 @@ const handlePress = (email: string, password: string): void => {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         console.log(userCredential.user.uid)
-        router.replace('/memo/list')
+        router.replace('/auth/log_in')
     })
     .catch((error) => {
         const { code, message } = error

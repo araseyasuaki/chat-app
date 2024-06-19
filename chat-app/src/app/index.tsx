@@ -2,20 +2,23 @@ import { Redirect, router } from "expo-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from 'react'
 import { auth } from '../config'
+import { View, Text } from 'react-native'
 
 const Index = (): JSX.Element => {
   useEffect(() =>{
     onAuthStateChanged(auth, (user) => {
       if (user !== null){
         //router.replace('/auth/log_in')
-        router.replace('/users/user')
+        router.replace('setting/selection')
       }
     })
   })
 
-  return 
-  <Redirect href='/users/user' />
-  //<Redirect href='auth/log_in' />
+  return (
+    
+    <Redirect href='auth/log_in' />
+    //<Redirect href='users/user' />
+  )
 }
 
 export default Index
