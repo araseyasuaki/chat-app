@@ -13,11 +13,19 @@ import { onSnapshot, doc } from 'firebase/firestore'
 import { collection, addDoc, setDoc } from 'firebase/firestore'
 
 
-const handlePress = (bodyText: string): void => {
-    if(auth.currentUser === null) {return}    
-    const ref = doc(db, `users/${auth.currentUser.uid}/about/bodyTextContext`)
-    setDoc(ref, 
-        {bodyText},
+const handlePress = (fullName: string, bodyText: string): void => {
+    if(auth.currentUser === null) {
+        console.error('user is not authenticated.')
+        return
+    }    
+    const ref = doc(db, `users/${auth.currentUser.uid}`)
+
+    setDoc(
+        ref, 
+        {
+            fullName, 
+            about : bodyText,
+        },
         {merge:true}
     )
         .then((docRef) => {
@@ -38,12 +46,30 @@ const profileset = (): JSX.Element => {
         })
     },[])
 
-    const [bodyText, setBodyText] = useState(''
-
-    )
+    const [name, setName] = useState('')
+    const [bodyText, setBodyText] = useState('')
 
     return (
         <KeyboardAvoidingView behavior='height' style={styles.container}>
+            <View>
+                <Text>
+                    Name
+                </Text>
+            </View>
+            <View>
+                <TextInput 
+                multiline
+                style={styles.input}
+                value={name}
+                onChangeText={(text) => {setName(text)}}
+                />
+            </View>
+
+            <View>
+                <Text>
+                    About Me
+                </Text>
+            </View>
             <View>
                 <TextInput 
                 multiline
@@ -53,7 +79,7 @@ const profileset = (): JSX.Element => {
                 />
             </View>
 
-            <CircleButton onPress={() => {handlePress(bodyText)}}>
+            <CircleButton onPress={() => {handlePress(name, bodyText)}}>
                 <Feather name = 'check' size={30} color='#ffffff'/>
             </CircleButton>
         </KeyboardAvoidingView>
