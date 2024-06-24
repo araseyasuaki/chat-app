@@ -10,13 +10,13 @@ const firebaseConfig = {
     storageBucket: process.env.EXPO_PUBLIC_FB_STORAGE_BUCKET,
     messagingSenderId: process.env.EXPO_PUBLIC_FB_MESSAGINGSENDER_ID,
     appId: process.env.EXPO_PUBLIC_FB_APP_ID
-  };
+};
 
-  const app = initializeApp(firebaseConfig)
-  const auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-  })
+const app = initializeApp(firebaseConfig)
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+})
 
-  const db = getFirestore(app)
+const db = getFirestore(app)
 
-  export { app, auth, db }
+export { app, auth, db }

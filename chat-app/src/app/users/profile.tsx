@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from 'react'
 import { Text, View } from "react-native";
 
-const Persona = (): JSX.Element => {
+const Profile = (): JSX.Element => {
   return (
     <View>
         <Text>
@@ -13,4 +13,4 @@ const Persona = (): JSX.Element => {
   )
 }
 
-export default Persona
+export default Profile

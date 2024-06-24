@@ -3,21 +3,22 @@ import Button from '../../components/Button'
 import { Link, router } from 'expo-router'
 import { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../config'
+import { auth, db } from '../../config'
 import Header from '../../components/Header'
+import { setDoc, doc, Timestamp } from 'firebase/firestore'
 
-const handlePress =(email: string, password: string) : void => {
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        console.log(userCredential.user.uid)
-        router.replace('/setting/profile_set')
-    })
-    .catch((error) => {
-        const { code, message } = error
-        console.log(code, message)
-        Alert.alert(message)
-    })
-}
+const handlePress = async (email: string, password: string): Promise<void> => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log(userCredential.user.uid);
+      const userUid = userCredential.user.uid;
+      router.push('/setting/profile');
+    } catch (error) {
+      const { code, message } = error;
+      console.log(code, message);
+      Alert.alert('Error', message);
+    }
+  };
 
 const LogIn = (): JSX.Element => {
     const [ email, setEmail ] = useState('')

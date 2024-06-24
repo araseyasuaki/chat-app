@@ -16,7 +16,7 @@ export default function TabLayout() {
       tabBarInactiveTintColor: '#999'
     }}>
       <Tabs.Screen 
-          name="persona" 
+          name="profile" 
           options={{
             tabBarIcon: ({color}) => (
               <Ionicons name= "person-circle-outline" size = {28} color={color} />
