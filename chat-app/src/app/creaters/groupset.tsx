@@ -32,7 +32,7 @@ const handlePress = async (fullName: string, bodyText: string): Promise<void> =>
     )
         .then((docRef) => {
             console.log('success', docRef)
-            router.push('group/list')
+            router.push('/chat/groupchat')
         }).catch((error)=> {
             console.log(error)
         })
@@ -50,7 +50,7 @@ const Profileset = (): JSX.Element => {
     },[])
 
 
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState<string | null>(null);
     const [name, setName] = useState('')
     const [bodyText, setBodyText] = useState('')
 
@@ -104,7 +104,7 @@ const Profileset = (): JSX.Element => {
         }
     }
 
-    async function uploadImage (uri: string | URL | Request){
+    async function uploadImage (uri: string){
         const response = await fetch(uri)
         const blob = await response.blob();
 
@@ -126,8 +126,8 @@ const Profileset = (): JSX.Element => {
                 getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                     console.log("File available at", downloadURL)
                     if(auth.currentUser){
-                        const userDocRef = doc(db, `groups/${auth.currentUser.uid}`);
-                    await setDoc(userDocRef, { profileImage: downloadURL }, { merge: true });
+                        const groupDocRef = doc(db, `groups/${auth.currentUser.uid}`);
+                    await setDoc(groupDocRef, { profileImage: downloadURL }, { merge: true });
                     }
 
                     // Update the image state with the new image URI

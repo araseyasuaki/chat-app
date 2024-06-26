@@ -24,7 +24,7 @@ const profileset2 = (): JSX.Element => {
                         <Text> [ユーザー] </Text>
                     </TouchableOpacity>
                 </Link>
-                <Link href='/creaters/group_set' asChild>
+                <Link href='/creaters/groupset' asChild>
                     <TouchableOpacity>
                         <Text> [クリエーター] </Text>
                     </TouchableOpacity>
