@@ -1,4 +1,3 @@
-
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Touchable, KeyboardAvoidingView} from 'react-native'
 import CircleButton from '../../components/CircleButton'
 import { router, useLocalSearchParams, useNavigation } from 'expo-router'
@@ -261,4 +260,3 @@ export default Profileset
 function getExtention(imageUri: string) {
     throw new Error('Function not implemented.')
 }
-

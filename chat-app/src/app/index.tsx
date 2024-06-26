@@ -8,7 +8,7 @@ const Index = (): JSX.Element => {
   useEffect(() =>{
     onAuthStateChanged(auth, (user) => {
       if (user !== null){
-        router.replace('/auth/log_in')
+        router.replace('/auth/login')
         //router.replace('creaters/group_list')
       }
     })
@@ -16,7 +16,7 @@ const Index = (): JSX.Element => {
 
   return (
     
-    <Redirect href='auth/log_in' />
+    <Redirect href='auth/login' />
     //<Redirect href='users/user' />
   )
 }
