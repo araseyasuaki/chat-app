@@ -20,7 +20,8 @@ export default function TabLayout() {
           options={{
             tabBarIcon: ({color}) => (
               <Ionicons name= "person-circle-outline" size = {28} color={color} />
-        )
+        ),
+        headerShown: false
       }}
       />
       <Tabs.Screen 

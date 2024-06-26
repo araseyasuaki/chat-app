@@ -11,7 +11,7 @@ const GroupList = (): JSX.Element => {
   const [memos, setMemos] = useState<Memo[]>([])
   useEffect(()=> {
     if (auth.currentUser === null) { return }
-    const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
+    const ref = collection(db, `groups/${auth.currentUser.uid}`)
     const q = query(ref)
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const remoteMemos: Memo[] = []
