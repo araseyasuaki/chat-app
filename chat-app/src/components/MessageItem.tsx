@@ -69,4 +69,3 @@ const styles = StyleSheet.create({
 
 export default MessageItem;
 
-//https://www.youtube.com/watch?v=OgNiNiaedVs&list=PLKWMD009Q4qRvrfjGotVfUbqGoLdvRDN4&index=8

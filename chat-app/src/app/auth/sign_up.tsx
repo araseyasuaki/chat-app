@@ -19,7 +19,7 @@ const handlePress = (name: string, email: string, password: string): void => {
             providerData: userCredential.user.providerData[0]
         }
         setDoc(doc(db, 'users', userCredential.user.uid), data).then(()=> {
-            router.replace('auth/log_in')
+            router.replace('auth/login')
         })
     })
     .catch((error) => {
@@ -65,7 +65,7 @@ const SignUp = (): JSX.Element => {
                 <Button label='Submit' onPress={() => {handlePress(name, email, password)}}/>
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>Already registered?</Text>
-                    <Link href='/auth/log_in' asChild replace>
+                    <Link href='/auth/login' asChild replace>
                         <TouchableOpacity>
                             <Text style={styles.footerLink}>Log in</Text>
                         </TouchableOpacity>

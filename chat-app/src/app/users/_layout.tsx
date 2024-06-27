@@ -25,12 +25,12 @@ export default function TabLayout() {
       }}
       />
       <Tabs.Screen 
-          //name="match"
           name="user" 
           options={{
             tabBarIcon: ({color}) => (
               <Feather name="heart" size = {24} color={color} />
-            )
+            ),
+          headerShown: false
       }}
       />
         <Tabs.Screen 

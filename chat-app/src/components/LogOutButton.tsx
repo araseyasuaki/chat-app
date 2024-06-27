@@ -6,7 +6,7 @@ import { auth } from '../config'
 const handlePress = (): void => {
     signOut(auth)
     .then(() => {
-        router.replace('/auth/log_in')
+        router.replace('/auth/login')
     })
     .catch((error)=> {
         Alert.alert('Failed to log out')

@@ -28,7 +28,7 @@ const GroupChat = (): JSX.Element => {
   const textRef = useRef<string>('');
   const inputRef = useRef<TextInput>(null);
 
-  // Fetch group chat information
+  // Fetch group information
   useEffect(() => {
     const fetchGroupData = async () => {
       try {
@@ -37,7 +37,7 @@ const GroupChat = (): JSX.Element => {
           return;
         }
         const groupDocRef = doc(db, `groups/${auth.currentUser.uid}`);
-        const docSnap = await getDoc(groupDocRef);
+        const docSnap = await getDoc(groupDocRef)
 
         if (docSnap.exists()) {
           const groupInfo = docSnap.data();
@@ -259,4 +259,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default GroupChat;
+export default GroupChat
