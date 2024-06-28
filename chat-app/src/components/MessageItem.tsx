@@ -19,10 +19,10 @@ const MessageItem: React.FC<MessageItemProps> = ({message, currentUser})=>  {
   if(currentUser?.uid === message?.userId){
     //console.log("my message")
     return (
-        <View style={styles.chatContainer}>
-          <View style={styles.chatBackground}>
-            <View style={styles.chatMsg}>
-              <Text style={styles.chatText}>
+        <View style={styles.mychatContainer}>
+          <View style={styles.mychatBackground}>
+            <View style={styles.mychatMsg}>
+              <Text style={styles.mychatText}>
                 {message?.text}
               </Text>
             </View>
@@ -31,11 +31,13 @@ const MessageItem: React.FC<MessageItemProps> = ({message, currentUser})=>  {
       )
     }else{
       return (
-        <View style={styles.chatContainer}>
-          <View style={styles.chatBackground}>
-            <Text style={styles.option2}>
-              {message?.text}
+        <View style={styles.yourchatContainer}>
+          <View style={styles.yourchatBackground}>
+            <View style={styles.yourchatMsg}>
+              <Text style={styles.yourchatText}>
+                {message?.text}
               </Text>
+            </View>
           </View>
         </View>
     )
@@ -43,25 +45,51 @@ const MessageItem: React.FC<MessageItemProps> = ({message, currentUser})=>  {
 }
 
 const styles = StyleSheet.create({
-  chatContainer: {
+  mychatContainer: {
+    flex:1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginBottom: 3,
-    marginRight: 3
+    marginRight: 3,
+    //backgroundColor: 'red'
   },
-  chatBackground:{
+  yourchatContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 3,
+    marginLeft: 3,
+    //backgroundColor: 'yellow'
+  },
+  mychatBackground:{
     width: wp(80),
+    //backgroundColor: 'black'
   },
-  chatMsg: {
+  yourchatBackground:{
+    width: wp(80),
+    //backgroundColor: 'purple'
+  },
+  mychatMsg: {
     flex:1,
     alignSelf: 'flex-end',
     padding: 3,
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: '#E2E8F0'
   },
-  chatText:{
+  yourchatMsg: {
+    flex:1,
+    alignSelf: 'flex-start',
+    padding: 3,
+    borderRadius: 5,
+    backgroundColor: '#EBF4FF',
+    borderWidth: 1,
+    borderColor: '#E2E8F0'
+  },
+  mychatText:{
+    fontSize: hp(2)
+  },
+  yourchatText:{
     fontSize: hp(2)
   },
   option2:{}

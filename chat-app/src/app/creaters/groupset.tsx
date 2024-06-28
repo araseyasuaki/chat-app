@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
-import { router } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { auth, db, storage } from '../../config';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -8,17 +8,30 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 import CircleButton from '../../components/CircleButton';
+import { useRoute } from '@react-navigation/native';
 
 const handlePress = async (fullName: string, bodyText: string): Promise<void> => {
+
+
     if (auth.currentUser === null) {
         console.error('User is not authenticated.');
         return;
     }
 
-    const groupDocRef = doc(db, `groups/${auth.currentUser.uid}`);
+
     try {
+        const groupDocRef = doc(db, `groups/${auth.currentUser.uid}`)
+
         await setDoc(groupDocRef, { fullName, about: bodyText }, { merge: true });
-        router.push('/chat/groupchat'); // Using router.push from expo-router
+        
+        //const route = useRoute()
+        //const {}
+
+        router.push({
+            pathname: '/chat/groupchat',
+            params: {id: auth.currentUser.uid}
+        }); // Using router.push from expo-router
+        //<Link href={`/chat/groupchat?id=${auth.currentUser.uid}`} asChild></Link>
     } catch (error) {
         console.log(error);
     }

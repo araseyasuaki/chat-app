@@ -8,14 +8,9 @@ import CustomKeyboardView from '../../components/CustomKeyboardView';
 import MessageList from '../../components/MessageList';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { getRoomId } from '@/src/utils/commons';
-import { useLocalSearchParams } from 'expo-router';
-
 
 
 const GroupChat = (): JSX.Element => {
-  const { id } = useLocalSearchParams(); // Retrieve the passed ID
-  console.log("group's userid: ", id) // why shown 5 times?
-
   const [userData, setUserData] = useState({
     profileImage: null,
     fullName: '',
@@ -42,9 +37,8 @@ const GroupChat = (): JSX.Element => {
           console.error('User is not authenticated.');
           return;
         }
-        const groupDocRef = doc(db, `groups/${id}`);
+        const groupDocRef = doc(db, `groups/${auth.currentUser.uid}`);
         const docSnap = await getDoc(groupDocRef)
-        console.log('ID of this chat:', id)
 
         if (docSnap.exists()) {
           const groupInfo = docSnap.data();
@@ -61,7 +55,7 @@ const GroupChat = (): JSX.Element => {
       }
     };
     fetchGroupData();
-  }, [id]);
+  }, []);
 
   // Fetch current user's profile information
   useEffect(() => {
@@ -72,7 +66,6 @@ const GroupChat = (): JSX.Element => {
           return;
         }
 
-        console.log('Fetching my id? ', auth.currentUser.uid)
         const userDocRef = doc(db, 'users', auth.currentUser.uid);
         const docSnap = await getDoc(userDocRef);
 
@@ -94,35 +87,53 @@ const GroupChat = (): JSX.Element => {
     fetchUserData();
   }, []);
 
+  // Create a chat room in Firebase DB if it doesn't exist
+  useEffect(() => {
+    createRoomIfNotExists();
 
-  /***/
+    if (!auth.currentUser) {return}
+    const uid = auth.currentUser.uid;
+    const roomId = getRoomId(uid);
 
-// Subscribe to message updates
-useEffect(() => {
-  const unsubscribe = subscribeToMessages();
+    const userDocRef = doc(db, 'groups', uid);
+    const roomDocRef = doc(userDocRef, 'rooms', roomId);
+    const messagesRef = collection(roomDocRef, 'messages')
+    const q = query(messagesRef, orderBy('createdAt', 'asc'))
 
-  return () => unsubscribe();
-}, [id]);
+    // onSnapshot : realtime updates to a query
+    let unsub = onSnapshot(q, (snapshot)=>{
+      let allMessages = snapshot.docs.map(doc=>{
+        return doc.data();
+      })
+      setMessages([...allMessages]);
+    })
+    return unsub;
 
-const subscribeToMessages = () => {
-  try {
-    const userDocRef = doc(db, 'groups', id);
-    const roomCollectionRef = collection(userDocRef, 'rooms');
-    const roomDocRef = doc(roomCollectionRef, getRoomId(id));
-    const messageCollectionRef = collection(roomDocRef, 'messages');
 
-    return onSnapshot(query(messageCollectionRef, orderBy('createdAt', 'asc')), (snapshot) => {
-      const fetchedMessages = snapshot.docs.map((doc) => doc.data());
-      setMessages(fetchedMessages);
-    });
-  } catch (error) {
-    console.error('Error subscribing to messages:', error);
-  }
-};
+  }, []);
 
+  const createRoomIfNotExists = async () => {
+    if (auth.currentUser) {
+      const uid = auth.currentUser.uid;
+      const roomId = getRoomId(uid);
+
+      try {
+        const userDocRef = doc(db, 'groups', uid);
+        const roomDocRef = doc(userDocRef, 'rooms', roomId);
+
+        await setDoc(roomDocRef, {
+          roomId,
+          createdAt: Timestamp.fromDate(new Date())
+        });
+
+        console.log("uid", uid, "roomId", roomId);
+      } catch (error) {
+        console.error("Error creating room:", error);
+      }
+    }
+  };
 
   const handleSendMessage = async () => {
-
     let message = newMessage.trim();
     if (!message) {
       console.error('No message');
@@ -136,14 +147,12 @@ const subscribeToMessages = () => {
       }
 
       const uid = auth.currentUser.uid;
-      let roomId = getRoomId(id);
+      let roomId = getRoomId(uid);
 
-      const userDocRef = doc(db, 'groups', id);
+      const userDocRef = doc(db, 'groups', uid);
       const roomCollectionRef = collection(userDocRef, 'rooms');
       const roomDocRef = doc(roomCollectionRef, roomId);
       const messageCollectionRef = collection(roomDocRef, 'messages');
-
-      console.log("handleSendmessage, uid: ", uid , "id", id, "roomId", roomId, "messages", messages)
 
       textRef.current=""
       if(inputRef) inputRef?.current?.clear()
@@ -156,7 +165,7 @@ const subscribeToMessages = () => {
         createdAt: Timestamp.fromDate(new Date())
       });
 
-      console.log('New message id:', newDoc.id);
+      //console.log('New message id:', newDoc.id);
       setNewMessage('');
       if (inputRef.current) {
         inputRef.current.clear();
@@ -181,8 +190,6 @@ const subscribeToMessages = () => {
         <View style={styles.chatBox}>
           <MessageList messages={messages} currentUser={auth.currentUser}/>
         </View>
-
-
         <View style={styles.option1}>
           <View style={styles.SendContainer}>
             <TextInput

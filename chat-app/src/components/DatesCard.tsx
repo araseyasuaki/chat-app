@@ -61,7 +61,7 @@ const DatesCard: React.FC<DatesCardProps> = ({
       </View>
       <View style={styles.thumbsup}>
       <Text>This group's ID : ${uid}</Text>
-      <Link href={`/chat/groupchat-test?id=${uid}`} asChild>
+      <Link href={`/chat/groupchat?id=${uid}`} asChild>
         <TouchableOpacity>
           <FontAwesome name="thumbs-up" size={35} />
         </TouchableOpacity>
