@@ -6,7 +6,7 @@ import Carousel from "react-native-snap-carousel";
 import DatesCard from "../../components/DatesCard";
 //import { date} from "../../constants/date";
 import { date } from "../../constants/index"
-import { router } from "expo-router";
+import { router, useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import {
   BellIcon,
@@ -24,8 +24,10 @@ import { doc, getDocs, getDoc, setDoc, collection, addDoc, onSnapshot, Timestamp
 
 
 const User = (): JSX.Element => {
+  const router = useRouter();
 
   const [groups, setGroups] = useState<any[]>([]); 
+
 
   // Fetch group information
   useEffect(() => {
@@ -51,9 +53,9 @@ const User = (): JSX.Element => {
     fetchGroupData();
   }, []);
 
-  const handlePress = (id: string) => {
-    router.push(`/chat/groupchat/${id}`);
-  };
+  //const handlePress = (id: string) => {
+  //  router.push(`/chat/groupchat/${id}`);
+  //};
 
   return (
 
@@ -66,6 +68,7 @@ const User = (): JSX.Element => {
             fullName={item.fullName}
             about={item.about}
             profileImage={item.profileImage}
+            uid = {item.id}
             />
           )}
           firstItem={1}

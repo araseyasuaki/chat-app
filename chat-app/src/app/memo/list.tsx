@@ -1,3 +1,5 @@
+/*
+
 import { View, Text, StyleSheet } from 'react-native'
 import MemoListItem from '../../components/MemoListItem'
 import CircleButton from '../../components/CircleButton'
@@ -36,3 +38,4 @@ const styles = StyleSheet.create({
 })
 
 export default list
+*/
