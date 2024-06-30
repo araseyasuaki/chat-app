@@ -8,12 +8,14 @@ import MessageItem from "./MessageItem";
 interface Message {
   userId: string;
   text: string;
+  profileImage: string;
+  senderName: string;
 }
 
 interface MessageListProps {
   messages: Message[];
   currentUser: {
-    userId: string;
+  userId: string;
   };
 }
 
@@ -23,8 +25,10 @@ const MessageList: React.FC<MessageListProps> = ({ messages, currentUser }) => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingTop: 10 }}
     >
+
       {messages.map((messages, index) => (
-          <MessageItem message={messages} key={index} currentUser={currentUser} />
+         //console.log('Profile Image:', message.profileImage);
+        <MessageItem message={messages} key={index} currentUser={currentUser} />
       ))}
     </ScrollView>
   );

@@ -143,7 +143,11 @@ const subscribeToMessages = () => {
       const roomDocRef = doc(roomCollectionRef, roomId);
       const messageCollectionRef = collection(roomDocRef, 'messages');
 
-      console.log("handleSendmessage, uid: ", uid , "id", id, "roomId", roomId, "messages", messages)
+      
+      //console.log("Profile URL: ", messages[0].profileUrl)
+      
+
+      //console.log("handleSendmessage, uid: ", uid , "id", id, "roomId", roomId, "messages", messages)
 
       textRef.current=""
       if(inputRef) inputRef?.current?.clear()
@@ -151,7 +155,7 @@ const subscribeToMessages = () => {
       const newDoc = await addDoc(messageCollectionRef, {
         userId: uid,
         text: message,
-        profileUrl: userData.profileImage,
+        profileImage: userData.profileImage,
         senderName: userData.fullName,
         createdAt: Timestamp.fromDate(new Date())
       });
