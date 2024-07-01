@@ -8,6 +8,7 @@ const Index = (): JSX.Element => {
   useEffect(() =>{
     onAuthStateChanged(auth, (user) => {
       if (user !== null){
+        //router.replace('chat/grouplist')
         router.replace('/auth/login')
         //router.replace('creaters/group_list')
       }

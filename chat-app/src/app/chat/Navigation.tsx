@@ -1,11 +1,9 @@
-// navigation/Navigation.tsx
-
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import DatesCard, { DatesCardProps } from '../components/DatesCard'; // Import DatesCard and DatesCardProps
-import GroupChatScreen from '../app/chat/z-groupchat'; // Import GroupChatScreen
-import User from '../app/users/user';
+import User from '../users/user';
+import GroupChat from './groupchat';
+import GroupList from './grouplist';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +12,8 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="User">
         <Stack.Screen name="User" component={User} />
-        <Stack.Screen name="GroupChatScreen" component={GroupChatScreen} />
+        <Stack.Screen name="GroupChat" component={GroupChat} />
+        <Stack.Screen name="GroupList" component={GroupList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

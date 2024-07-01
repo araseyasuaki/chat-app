@@ -4,17 +4,13 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Carousel from "react-native-snap-carousel";
 import DatesCard from "../../components/DatesCard";
-//import { date} from "../../constants/date";
-import { date } from "../../constants/index"
 import { router, useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import {
   BellIcon,
 } from "react-native-heroicons/outline";
-//import { user1 } from "../../../assets/images";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 const { width, height } = Dimensions.get("window");
-//const carouselItem = require('../../constants/date.js');
 import { StatusBar } from "expo-status-bar";
 
 import { app, auth, db } from '../../config'

@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect, useRef, cloneElement } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useState, useEffect, useRef, cloneElement, useLayoutEffect } from 'react';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import { doc, getDoc, setDoc, collection, addDoc, onSnapshot, Timestamp, orderBy, query } from 'firebase/firestore';
 import { auth, db } from '../../config';
 import { Feather } from '@expo/vector-icons';
@@ -9,13 +9,31 @@ import MessageList from '../../components/MessageList';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { getRoomId } from '@/src/utils/commons';
 import { useLocalSearchParams } from 'expo-router';
-
+import { useNavigation } from '@react-navigation/native';
+import Button from '@/src/components/Button';
+import GroupList from './grouplist';
+import { router } from 'expo-router';
+import { useRouter } from 'expo-router';
+import GroupChatHeader from './groupchatheader';
+//import GroupChatHeader from '@/src/components/GroupChatHeader';
 
 
 const GroupChat = (): JSX.Element => {
-  const { id } = useLocalSearchParams(); // Retrieve the passed ID
-  console.log("group's userid: ", id) // why shown 5 times?
 
+  const navigation = useNavigation()
+
+
+  useEffect(()=>{
+    navigation.setOptions({
+      headerShown: true,
+      header: () => <GroupChatHeader />
+    })
+  })
+
+
+  const { id } = useLocalSearchParams(); // Retrieve the passed ID
+ 
+  console.log ("router? ", router)
   const [userData, setUserData] = useState({
     profileImage: null,
     fullName: '',
@@ -100,7 +118,6 @@ const GroupChat = (): JSX.Element => {
 // Subscribe to message updates
 useEffect(() => {
   const unsubscribe = subscribeToMessages();
-
   return () => unsubscribe();
 }, [id]);
 
@@ -142,13 +159,6 @@ const subscribeToMessages = () => {
       const roomCollectionRef = collection(userDocRef, 'rooms');
       const roomDocRef = doc(roomCollectionRef, roomId);
       const messageCollectionRef = collection(roomDocRef, 'messages');
-
-      
-      //console.log("Profile URL: ", messages[0].profileUrl)
-      
-
-      //console.log("handleSendmessage, uid: ", uid , "id", id, "roomId", roomId, "messages", messages)
-
       textRef.current=""
       if(inputRef) inputRef?.current?.clear()
 
@@ -170,6 +180,7 @@ const subscribeToMessages = () => {
       Alert.alert('Message', message);
     }
   };
+
 
 
   return (
